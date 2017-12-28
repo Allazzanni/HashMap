@@ -1,6 +1,17 @@
-#include "HashTable.h"
+ #include "HashTable.h"
 #include "Record.h"
 #include <string>
+
+template <class T> ostream& operator<<(ostream& os, const HashTable<T>& me) {
+      int i = 0;
+      while (i < MAXHASH){
+          if (!me.hashMap[i].isEmpty()){
+              cout << "Index: " << i << " " << me.hashMap[i] << endl;
+          }
+          i++;
+      }
+      return os;
+}
 
 /*Generic constructor*/
 template <class T> HashTable<T>::HashTable()
@@ -28,7 +39,6 @@ template <class T> bool HashTable<T>::find(int key, T& value) {
     }
     probe = 0;
     return false;
-
 }
 
 /*Inserts the key/value into the hashtable and stores the amount of collisions in the passed collisions*/
